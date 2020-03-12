@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, Subject, merge, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
+import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 
 import { TasksService } from './tasks-service.service';
 import { Task } from './task.model';
@@ -50,6 +50,10 @@ export class TasksComponent implements OnInit {
     );
   }
 
+  onScroll() {
+    console.log('scrolled!!');
+  }
+  
   checkNames(name){
     console.log(name);
     var flag = 1;
