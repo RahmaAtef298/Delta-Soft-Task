@@ -1,4 +1,4 @@
-<div class="text-info mt-4 text-center mb-3">
+  <div class="text-info mt-4 text-center mb-3">
     <h1>Tasks List</h1>
   </div>
   <div class="container">
@@ -26,33 +26,38 @@
       </div>
       
       
-      <div class="tasklist">
-          <div class="task-list" *ngIf="tasks.length > 0 && !isLoading">
-              <div class="ml-1 mt-1 task" *ngFor="let task of tasks">
-                  <div class="row">
-                    <div class="col-sm-9 text-info"> 
-                      <h5>{{task.memberName}}</h5>
-                    </div>
-                    <div class="col-sm-3"> 
-                      <div *ngIf="!task.isDone"><input type="checkbox" [checked]="task.isDone" (click)="updateTask(task)"> Is Done ?</div>
-                      <p class="done" *ngIf="task.isDone" >Done .</p>
-                    </div>
-                  </div>
-                  <div>
-                    {{task.description}}
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-9">
-                      <p class="date">{{task.date | date:'dd/MM/yyyy'}}</p>
-                    </div>
-                    <div class="col-sm-3">
-                        <button type="button" (click)="deleteTask(task.id)" class="btn btn-danger">Delete</button>
-                    </div>
-                  </div>
+
+      <div class="search-results">
+        <div infiniteScroll [infiniteScrollDistance]="10" [infiniteScrollThrottle]="50" [infiniteScrollContainer]="'.search-results'" [fromRoot]="true" (scrolled)="onScroll()" *ngIf="tasks.length > 0 && !isLoading">
+          <div class="ml-1 mt-1 task" *ngFor="let task of tasks">
+              <div class="row">
+                <div class="col-sm-9 text-info"> 
+                  <h5>{{task.memberName}}</h5>
+                </div>
+                <div class="col-sm-3"> 
+                  <div *ngIf="!task.isDone"><input type="checkbox" [checked]="task.isDone" (click)="updateTask(task)"> Is Done ?</div>
+                  <p class="done" *ngIf="task.isDone" >Done .</p>
+                </div>
+              </div>
+              <div>
+                {{task.description}}
+              </div>
+              <div class="row">
+                <div class="col-sm-9">
+                  <p class="date">{{task.date | date:'dd/MM/yyyy'}}</p>
+                </div>
+                <div class="col-sm-3">
+                    <button type="button" (click)="deleteTask(task.id)" class="btn btn-danger">Delete</button>
+                </div>
               </div>
           </div>
+        </div>
+        <p class="info-text tasklist" *ngIf="tasks.length <= 0 && !isLoading">No Tasks</p>
       </div>
-      <p class="info-text tasklist" *ngIf="tasks.length <= 0 && !isLoading">No Tasks</p>
-</div>
+  </div>
+
+   
+
+
    
 
