@@ -1,4 +1,5 @@
 
+
 .taskform{
     margin: auto auto;
 }
@@ -6,15 +7,19 @@
 .tasklist{
   justify-content: center;
   margin: auto auto;
-  overflow-y: scroll !important;
-  max-height: 300px;
-  width:60%;
 }
 
 .task{
   border: 1px solid rgb(26, 139, 184);
   padding: 15px;
   margin-bottom: 10px;
+}
+
+.search-results { 
+  height: 300px;   
+  margin: auto;
+  width: 60%;
+  overflow-y: scroll;
 }
 
 .done{
