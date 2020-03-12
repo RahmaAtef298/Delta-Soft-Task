@@ -1,0 +1,58 @@
+<div class="text-info mt-4 text-center mb-3">
+    <h1>Tasks List</h1>
+  </div>
+  <div class="container">
+      <div class="card text-right mb-3 taskform" id="card" style="width: 35rem;">
+        <div class="card-body">
+          <form (submit)="addTask(TaskForm)" #TaskForm="ngForm">
+              <div class="row">
+                <div class="col-sm-6">
+                  <input type="text" name="memberName" ngModel [(ngModel)]="nameMember" class="form-control mb-3" placeholder="Enter Team Member" [ngbTypeahead]="searchMemberNames"  (focus)="focus$.next($event.target.value)" (click)="click$.next($event.target.value)" (change)="checkNames($event.target.value)" #memName="ngbTypeahead" required>
+                </div>
+                <div class="col-sm-6"> 
+                  <input type="date" name="date" min="{{currentDate | date:'yyyy-MM-dd'}}" ngModel class="form-control mb-3" placeholder="Enter Date" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <input type="text" name="description" ngModel #desc="ngModel" minlength="10" maxlength="100" class="form-control mb-3" placeholder="Enter Task Description" required>
+                </div>
+                <span class="error" *ngIf="!desc.valid && desc.touched">Minimum Length is 10 char & Maximum Length is 100</span>
+              </div>
+              <button type="submit" class="btn btn-info" [disabled]="!TaskForm.valid">Add</button>
+              <button type="button" class="btn btn-danger ml-1" [disabled]="tasks.length < 1" (click)="deleteAll()">Delete All</button>
+          </form>
+        </div>
+      </div>
+      
+      
+      <div class="tasklist">
+          <div class="task-list" *ngIf="tasks.length > 0 && !isLoading">
+              <div class="ml-1 mt-1 task" *ngFor="let task of tasks">
+                  <div class="row">
+                    <div class="col-sm-9 text-info"> 
+                      <h5>{{task.memberName}}</h5>
+                    </div>
+                    <div class="col-sm-3"> 
+                      <div *ngIf="!task.isDone"><input type="checkbox" [checked]="task.isDone" (click)="updateTask(task)"> Is Done ?</div>
+                      <p class="done" *ngIf="task.isDone" >Done .</p>
+                    </div>
+                  </div>
+                  <div>
+                    {{task.description}}
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-9">
+                      <p class="date">{{task.date | date:'dd/MM/yyyy'}}</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="button" (click)="deleteTask(task.id)" class="btn btn-danger">Delete</button>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <p class="info-text tasklist" *ngIf="tasks.length <= 0 && !isLoading">No Tasks</p>
+</div>
+   
+

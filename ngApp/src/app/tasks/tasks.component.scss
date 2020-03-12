@@ -1,0 +1,38 @@
+
+.taskform{
+    margin: auto auto;
+}
+
+.tasklist{
+  justify-content: center;
+  margin: auto auto;
+  overflow-y: scroll !important;
+  max-height: 300px;
+  width:60%;
+}
+
+.task{
+  border: 1px solid rgb(26, 139, 184);
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.done{
+  color: red;
+}
+
+.error{
+  color: red;
+  text-align: center;
+  margin-left: 20px;
+  margin-top: -10px;
+}
+
+.date{
+  color: rgb(201, 4, 4);
+}
+
+.info-text{
+  color: rgb(7, 106, 145);
+  font-style: oblique;
+}
